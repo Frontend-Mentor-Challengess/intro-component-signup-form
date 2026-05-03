@@ -1,0 +1,12 @@
+@use "sass:map";
+@use "../abstracts/" as *;
+
+@mixin respond-to($size) {
+  @if map.has-key($map: $breakpoints, $key: $size) {
+    @media (min-width: map.get($breakpoints, $size)) {
+      @content;
+    }
+  } @else {
+    @error "Unfortunately, no value could be retrieved from `#{$size}`. Please make sure it is defined in the `#{$breakpoints}` map.";
+  }
+}
